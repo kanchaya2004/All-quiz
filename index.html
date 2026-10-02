@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ข้อสอบ Data Analytics & Data Mining 100 ข้อ</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:Tahoma,'Sarabun',sans-serif;background:#f4f6f9;color:#222;margin:0;padding:16px;line-height:1.55}
+.container{max-width:900px;margin:auto;background:#fff;padding:22px;border-radius:14px;box-shadow:0 4px 18px #0001}
+h1{color:#1a365d;font-size:24px;margin-top:0}
+.subtitle{color:#555}
+.info{background:#ebf8ff;border-left:5px solid #3182ce;padding:12px;border-radius:7px;margin:15px 0}
+.progress{position:sticky;top:0;background:#fff;padding:10px 0;z-index:5}
+.bar{height:9px;background:#e2e8f0;border-radius:9px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:#3182ce;transition:.2s}
+.question-card{border:1px solid #e2e8f0;border-radius:10px;padding:16px;margin:15px 0;background:#fafafa}
+.qnum{font-size:13px;color:#2b6cb0;font-weight:bold}
+.question{font-weight:bold;font-size:17px;margin:5px 0 13px}
+label{display:block;background:#edf2f7;padding:10px 12px;margin:7px 0;border-radius:7px;cursor:pointer}
+label:hover{background:#e2e8f0}
+input{margin-right:8px}
+button{border:0;border-radius:9px;padding:12px 18px;font-size:16px;font-weight:bold;cursor:pointer;margin:6px}
+.primary{background:#3182ce;color:white}
+.secondary{background:#718096;color:white}
+.result{display:none;background:#f0fff4;border:2px solid #38a169;padding:18px;border-radius:10px;margin-top:20px}
+.wrong{background:#fff5f5;border-left:4px solid #e53e3e;padding:10px;margin:8px 0}
+.correct{color:#22543d}
+.answer{font-weight:bold}
+small{color:#666}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>📝 ข้อสอบ Data Analytics & Data Mining 100 ข้อ</h1>
+<p class="subtitle">บทที่ 1–5 • สุ่มข้อ + สุ่มตัวเลือก • ทำก่อนดูเฉลย</p>
+
+<div class="info">
+<b>วิธีทำ:</b> เลือกคำตอบให้ครบ 100 ข้อ แล้วกด <b>ส่งคำตอบ</b><br>
+ระบบจะสุ่มลำดับข้อและตัวเลือกทุกครั้งที่เปิด/รีเฟรชหน้า
+</div>
+
+<div class="progress">
+<b>ตอบแล้ว <span id="count">0</span>/100 ข้อ</b>
+<div class="bar"><span id="bar"></span></div>
+</div>
+
+<form id="quiz"></form>
+<div>
+<button class="primary" onclick="submitQuiz()" type="button">✅ ส่งคำตอบ</button>
+<button class="secondary" onclick="location.reload()" type="button">🔄 สุ่มชุดใหม่</button>
+</div>
+<div id="result" class="result"></div>
+</div>
+
+<script>
+const questions = [
+/* บท 1 */
+["บทที่ 1","Data Warehouse มีวัตถุประสงค์หลักเพื่ออะไร?",["รองรับการวิเคราะห์และการตัดสินใจ","แทนที่ระบบปฏิบัติการทั้งหมด","สร้างเกมออนไลน์","เก็บเฉพาะข้อมูลที่เป็นปัจจุบัน"],0],
+["บทที่ 1","ข้อใดคือคุณสมบัติ 4 ประการของ Data Warehouse ตามแนวคิดของ Inmon?",["Subject-Oriented, Integrated, Time-Variant, Non-Volatile","Dynamic, Real-Time, Normalized, Volatile","Application-Oriented, Static, Volatile, Integrated","Subject-Oriented, Dynamic, Normalized, Real-Time"],0],
+["บทที่ 1","Subject-Oriented หมายถึงอะไร?",["จัดข้อมูลตามหัวข้อสำคัญของธุรกิจ เช่น ลูกค้า สินค้า การขาย","ข้อมูลเปลี่ยนทุกวินาที","ข้อมูลถูกลบหลังใช้งาน","ข้อมูลถูกเก็บแยกตามโปรแกรม"],0],
+["บทที่ 1","Integrated ใน Data Warehouse หมายถึงอะไร?",["รวมข้อมูลจากหลายแหล่งให้มีรูปแบบสอดคล้องกัน","เก็บข้อมูลเพียงแหล่งเดียว","ลบข้อมูลเก่าออกทั้งหมด","ทำให้ข้อมูลเป็น Real-time"],0],
+["บทที่ 1","Time-Variant สื่อถึงอะไร?",["ข้อมูลมีมิติด้านเวลาและสามารถวิเคราะห์ย้อนหลังได้","ข้อมูลเปลี่ยนแบบ Real-time เท่านั้น","ข้อมูลไม่มีประวัติ","ข้อมูลต้องมีวันหมดอายุ"],0],
+["บทที่ 1","Non-Volatile หมายถึงอะไร?",["ข้อมูลที่นำเข้าแล้วโดยทั่วไปไม่ถูกแก้ไขหรือลบแบบงาน OLTP","ข้อมูลถูกแก้ไขทุกวินาที","ข้อมูลต้องหายเมื่อปิดระบบ","ข้อมูลไม่สามารถอ่านได้"],0],
+["บทที่ 1","ระบบ OLTP เหมาะกับงานใด?",["การบันทึกธุรกรรมประจำวัน เช่น การซื้อสินค้า","การวิเคราะห์ยอดขายย้อนหลังหลายปี","การทำ Dashboard เชิงกลยุทธ์เท่านั้น","การทำ Clustering ขนาดใหญ่เท่านั้น"],0],
+["บทที่ 1","ระบบ OLAP เหมาะกับงานใด?",["การวิเคราะห์ข้อมูลหลายมิติ","การบันทึกคำสั่งซื้อทีละรายการ","การรับชำระเงินหน้าร้านเท่านั้น","การแก้ไขข้อมูลลูกค้ารายวัน"],0],
+["บทที่ 1","เหตุใด Data Warehouse จึงมักใช้ Denormalization?",["ลดการ Join และช่วยให้การวิเคราะห์รวดเร็วขึ้น","เพื่อให้ข้อมูลซ้ำมากที่สุด","เพื่อรองรับ Transaction แบบ Real-time","เพื่อป้องกันการวิเคราะห์ข้อมูล"],0],
+["บทที่ 1","Fact Table โดยทั่วไปเก็บอะไร?",["ค่าตัวชี้วัดหรือ Measures ของธุรกิจ","เฉพาะชื่อจังหวัด","เฉพาะคำอธิบายสินค้า","เฉพาะโครงสร้างฐานข้อมูล"],0],
+["บทที่ 1","Dimension Table ใช้ทำอะไร?",["ให้รายละเอียดของมิติที่ใช้วิเคราะห์ เช่น ลูกค้า สินค้า เวลา","เก็บเฉพาะค่ารวมยอดขาย","เก็บ Password ผู้ใช้","เก็บ Log ของระบบเท่านั้น"],0],
+["บทที่ 1","Star Schema มีลักษณะสำคัญอย่างไร?",["Fact Table อยู่ตรงกลางและเชื่อมกับ Dimension Tables","มีแต่ Dimension Table ไม่มี Fact","ทุกตารางต้องเชื่อมกันเป็นวงกลม","ไม่มี Primary Key"],0],
+["บทที่ 1","Snowflake Schema แตกต่างจาก Star Schema อย่างไร?",["Dimension บางส่วนถูกทำ Normalization เป็นหลายตาราง","ไม่มี Fact Table","ใช้เฉพาะข้อมูล Real-time","ไม่สามารถใช้วิเคราะห์ข้อมูลได้"],0],
+["บทที่ 1","Metadata คืออะไร?",["ข้อมูลที่อธิบายข้อมูล เช่น ชื่อฟิลด์ ชนิดข้อมูล และแหล่งที่มา","ข้อมูลยอดขายเท่านั้น","ข้อมูลที่ไม่มีโครงสร้างเท่านั้น","ข้อมูลที่ถูกลบแล้ว"],0],
+["บทที่ 1","Data Mart คืออะไร?",["คลังข้อมูลย่อยที่มุ่งเน้นหน่วยงานหรือหัวข้อเฉพาะ","ฐานข้อมูลสำหรับเกม","ไฟล์สำรองข้อมูลเท่านั้น","ระบบปฏิบัติการ"],0],
+["บทที่ 1","ETL ย่อมาจากอะไร?",["Extract, Transform, Load","Evaluate, Train, Learn","Encode, Test, Label","Extract, Transfer, Link"],0],
+["บทที่ 1","ขั้นตอน Extract ใน ETL คืออะไร?",["ดึงข้อมูลจากแหล่งข้อมูล","ทำความสะอาดข้อมูลเท่านั้น","โหลดข้อมูลเข้าคลังข้อมูล","สร้างกราฟ"],0],
+["บทที่ 1","ขั้นตอน Transform ใน ETL คืออะไร?",["แปลงและเตรียมข้อมูลให้อยู่ในรูปแบบที่เหมาะสม","ดึงข้อมูลจากต้นทางเท่านั้น","ลบ Data Warehouse","สร้างผู้ใช้ใหม่"],0],
+["บทที่ 1","ขั้นตอน Load ใน ETL คืออะไร?",["นำข้อมูลที่ผ่านการเตรียมแล้วเข้าสู่ระบบเป้าหมาย","คำนวณ Entropy","แบ่งกลุ่มลูกค้า","สร้าง Label"],0],
+["บทที่ 1","ข้อใดเป็นตัวอย่างงานที่เหมาะกับ Data Warehouse มากที่สุด?",["วิเคราะห์ยอดขายย้อนหลังแยกตามปี สาขา และสินค้า","บันทึกการซื้อสินค้า 1 รายการ","แก้ไขเบอร์โทรลูกค้า 1 คน","เปิดบัญชีผู้ใช้"],0],
+
+/* บท 2 */
+["บทที่ 2","Data Mining คืออะไร?",["กระบวนการค้นหารูปแบบหรือความรู้ที่มีประโยชน์จากข้อมูล","การเก็บข้อมูลลงฮาร์ดดิสก์เท่านั้น","การออกแบบหน้าเว็บ","การสร้างฐานข้อมูลโดยไม่วิเคราะห์"],0],
+["บทที่ 2","Predictive Data Mining เน้นอะไร?",["การทำนายหรือพยากรณ์ผลลัพธ์","การสรุปลักษณะข้อมูลอย่างเดียว","การจัดเก็บข้อมูล","การสำรองข้อมูล"],0],
+["บทที่ 2","Descriptive Data Mining เน้นอะไร?",["การค้นหาและอธิบายรูปแบบหรือโครงสร้างที่พบในข้อมูล","การทำนายอนาคตเท่านั้น","การสร้างระบบปฏิบัติการ","การเข้ารหัสข้อมูล"],0],
+["บทที่ 2","Classification เป็นงานประเภทใด?",["Predictive","Descriptive เท่านั้น","Data Cleaning","ETL"],0],
+["บทที่ 2","Clustering เป็นงานประเภทใดโดยทั่วไป?",["Descriptive / Unsupervised","Supervised Classification","ETL","Data Integration"],0],
+["บทที่ 2","Association Rule Mining ใช้ค้นหาอะไร?",["ความสัมพันธ์หรือการเกิดร่วมกันของรายการ","ค่าที่หายไป","ชนิดข้อมูล","โครงสร้างแฟ้ม"],0],
+["บทที่ 2","Market Basket Analysis มักใช้กับข้อมูลใด?",["รายการสินค้าที่ลูกค้าซื้อร่วมกัน","คะแนนสอบของนักศึกษาเท่านั้น","ภาพถ่ายดาวเทียมเท่านั้น","ข้อมูลอุณหภูมิอย่างเดียว"],0],
+["บทที่ 2","กฎ {Bread} → {Milk} หมายถึงอะไร?",["ผู้ที่ซื้อ Bread มีแนวโน้มที่จะซื้อ Milk ตามเงื่อนไขของกฎ","Milk ทำให้ Bread หายไป","Bread และ Milk ต้องมีราคาเท่ากัน","ลูกค้าทุกคนต้องซื้อทั้งสอง"],0],
+["บทที่ 2","Support ของ Association Rule บอกอะไร?",["สัดส่วนของธุรกรรมที่มีรายการตามเงื่อนไขที่พิจารณา","ความแม่นยำของโมเดลเสมอ","จำนวน Features","จำนวน Cluster"],0],
+["บทที่ 2","Confidence ของกฎ A → B หมายถึงอะไร?",["โอกาสที่มี B เมื่อมี A ในธุรกรรมตามข้อมูล","จำนวนข้อมูลทั้งหมด","ระยะห่างระหว่างจุด","ค่า Entropy ของ A เท่านั้น"],0],
+["บทที่ 2","Lift ของกฎ Association Rule ใช้เพื่ออะไร?",["วัดว่าการเกิด A และ B ร่วมกันสัมพันธ์กันมากกว่าการเกิด B โดยลำพังเพียงใด","หาจำนวนแถวที่หายไป","เลือก Root Node เท่านั้น","คำนวณค่าเฉลี่ย"],0],
+["บทที่ 2","ข้อใดเป็นตัวอย่าง Classification?",["ทำนายว่าอีเมลเป็น Spam หรือ Not Spam","แบ่งลูกค้าเป็น 4 กลุ่มโดยไม่มี Label","หาสินค้าที่ซื้อร่วมกัน","สรุปยอดขายรายเดือน"],0],
+["บทที่ 2","ข้อใดเป็นตัวอย่าง Regression?",["พยากรณ์ราคาบ้านเป็นตัวเลข","ทำนายว่าเป็น Spam หรือไม่","แบ่งลูกค้าเป็นกลุ่ม","ค้นหากฎสินค้า"],0],
+["บทที่ 2","ข้อใดเป็นตัวอย่าง Clustering?",["แบ่งลูกค้าตามพฤติกรรมโดยไม่มี Class Label","ทำนายเกรดจากคะแนน","ทำนาย Spam","ทำนายยอดขาย"],0],
+["บทที่ 2","Supervised Learning ต้องมีอะไรในการฝึกโมเดล?",["ข้อมูลพร้อม Label/Target","ข้อมูลที่ไม่มี Label เท่านั้น","เฉพาะข้อมูลรูปภาพ","เฉพาะข้อมูลข้อความ"],0],
+["บทที่ 2","Unsupervised Learning มีลักษณะอย่างไร?",["เรียนรู้รูปแบบจากข้อมูลที่ไม่มี Target Label","ต้องมี Label ทุกแถว","ใช้เฉพาะ Regression","ใช้เฉพาะ Decision Tree"],0],
+["บทที่ 2","K-Means มีวัตถุประสงค์หลักอะไร?",["แบ่งข้อมูลออกเป็น K กลุ่มตามความคล้ายกัน","สร้าง Association Rule","เติม Missing Value","คำนวณ Precision"],0],
+["บทที่ 2","ในการวัดความคล้ายของข้อมูลตัวเลข K-Means มักใช้ระยะทางใด?",["Euclidean Distance","Manhattan เท่านั้น","Cosine เท่านั้น","Hamming เท่านั้น"],0],
+["บทที่ 2","ข้อใดเป็นประโยชน์ของ Data Mining?",["ช่วยค้นหารูปแบบที่ซ่อนอยู่เพื่อสนับสนุนการตัดสินใจ","ทำให้ข้อมูลไม่ต้องจัดเก็บ","รับประกันว่าทุกการทำนายถูกต้อง 100%","แทนที่มนุษย์ได้ทุกงาน"],0],
+["บทที่ 2","ข้อใดไม่ใช่ตัวอย่างงาน Data Mining โดยตรง?",["การพิมพ์เอกสารทั่วไป","Classification","Clustering","Association Rule Mining"],0],
+
+/* บท 3 */
+["บทที่ 3","CRISP-DM มีกี่ขั้นตอนหลัก?",["6 ขั้นตอน","3 ขั้นตอน","4 ขั้นตอน","8 ขั้นตอน"],0],
+["บทที่ 3","ขั้นตอนแรกของ CRISP-DM คืออะไร?",["Business Understanding","Data Preparation","Modeling","Deployment"],0],
+["บทที่ 3","Business Understanding เน้นอะไร?",["ทำความเข้าใจเป้าหมายทางธุรกิจและกำหนดปัญหาที่ต้องแก้","เลือก Algorithm ทันที","ลบ Missing Value","สร้าง Dashboard"],0],
+["บทที่ 3","Data Understanding เน้นอะไร?",["รวบรวม สำรวจ และทำความเข้าใจข้อมูลเบื้องต้น","Deploy โมเดล","เลือกผู้ใช้ระบบ","เขียนเว็บไซต์"],0],
+["บทที่ 3","Data Preparation มีหน้าที่อะไร?",["ทำความสะอาด แปลง และเตรียมข้อมูลสำหรับ Modeling","นำโมเดลขึ้นใช้งานเท่านั้น","กำหนดเป้าหมายธุรกิจเท่านั้น","สร้างรายงานการตลาดเท่านั้น"],0],
+["บทที่ 3","Modeling คือขั้นตอนใด?",["เลือกและสร้างโมเดล Machine Learning/Data Mining","เก็บข้อมูลต้นทาง","ทำความเข้าใจธุรกิจ","นำระบบไปใช้งาน"],0],
+["บทที่ 3","Evaluation ใน CRISP-DM ทำอะไร?",["ประเมินโมเดลและตรวจว่าผลลัพธ์ตอบโจทย์ทางธุรกิจหรือไม่","สร้างข้อมูลใหม่ทั้งหมด","ติดตั้งฐานข้อมูล","ดึงข้อมูลจากเว็บไซต์"],0],
+["บทที่ 3","Deployment หมายถึงอะไร?",["นำผลลัพธ์หรือโมเดลไปใช้งานจริง","ลบข้อมูล","คำนวณ Entropy","แบ่งข้อมูลเป็น Train/Test"],0],
+["บทที่ 3","ลำดับที่ถูกต้องของ CRISP-DM คือข้อใด?",["Business Understanding → Data Understanding → Data Preparation → Modeling → Evaluation → Deployment","Data Preparation → Business Understanding → Deployment → Modeling → Evaluation → Data Understanding","Modeling → Data Preparation → Business Understanding → Evaluation → Deployment → Data Understanding","Business Understanding → Modeling → Data Preparation → Deployment → Data Understanding → Evaluation"],0],
+["บทที่ 3","หากพบว่าข้อมูลที่เก็บมาไม่ตอบโจทย์เป้าหมายธุรกิจ ควรทำอย่างไร?",["ทบทวนและวนกลับไปปรับขั้นตอนก่อนหน้า","Deploy ทันที","ลบโมเดลอย่างเดียว","เพิ่มจำนวน Cluster โดยไม่ตรวจข้อมูล"],0],
+["บทที่ 3","เหตุใด CRISP-DM จึงเป็นกระบวนการแบบวนซ้ำได้?",["ผลจากขั้นตอนหนึ่งอาจทำให้ต้องกลับไปปรับขั้นตอนก่อนหน้า","ทุกขั้นตอนต้องทำเพียงครั้งเดียว","เพราะไม่มีขั้นตอน Evaluation","เพราะใช้ได้เฉพาะข้อมูล Real-time"],0],
+["บทที่ 3","ข้อใดเป็นตัวอย่างของ Business Understanding?",["ต้องการลดลูกค้ายกเลิกบริการลง 10%","ตรวจค่า Missing ในคอลัมน์","ทดลอง Decision Tree","สร้าง Confusion Matrix"],0],
+["บทที่ 3","ข้อใดเป็นตัวอย่าง Data Understanding?",["ตรวจจำนวนข้อมูล ชนิดข้อมูล การกระจาย และความผิดปกติ","กำหนด KPI ทางธุรกิจ","Deploy API","เลือก Root Node"],0],
+["บทที่ 3","ข้อใดเป็นตัวอย่าง Data Preparation?",["จัดการ Missing Value และแปลงข้อมูลให้อยู่ในรูปแบบที่เหมาะสม","วัด Accuracy หลัง Deploy","กำหนดเป้าหมายบริษัท","นำระบบขึ้น Server"],0],
+["บทที่ 3","ข้อใดเป็นตัวอย่าง Evaluation?",["เปรียบเทียบ Precision, Recall และผลกระทบต่อเป้าหมาย","ดึงข้อมูลจากฐานข้อมูล","สร้างตาราง Dimension","กรอกข้อมูลด้วยมือ"],0],
+["บทที่ 3","ข้อใดเป็นตัวอย่าง Deployment?",["นำโมเดลที่ผ่านการประเมินไปใช้ในระบบจริง","ลบข้อมูลซ้ำ","แบ่ง Train/Test","คำนวณ Mean"],0],
+["บทที่ 3","ข้อใดควรเกิดขึ้นก่อน Modeling?",["Data Preparation","Deployment","Final Report เท่านั้น","Production Monitoring เท่านั้น"],0],
+["บทที่ 3","ถ้าโมเดลมี Accuracy สูงแต่ไม่ตอบโจทย์ธุรกิจ ควรพิจารณาอะไร?",["ทบทวน Evaluation และ Business Understanding","ถือว่าโมเดลดีแน่นอน","Deploy ทันที","เพิ่มข้อมูลโดยไม่ตรวจปัญหา"],0],
+["บทที่ 3","การกำหนดเกณฑ์ความสำเร็จของโครงการควรทำตั้งแต่ช่วงใด?",["Business Understanding","Deployment","Modeling เท่านั้น","หลังโครงการเสร็จ"],0],
+["บทที่ 3","ข้อใดสอดคล้องกับแนวคิด CRISP-DM มากที่สุด?",["เทคนิคและขั้นตอนสามารถปรับวนกลับได้ตามผลการค้นพบ","ห้ามย้อนกลับไปแก้ข้อมูล","ต้องใช้ Algorithm เดียวเสมอ","ต้องใช้ Deep Learning ทุกโครงการ"],0],
+
+/* บท 4 */
+["บทที่ 4","Missing Value คืออะไร?",["ค่าข้อมูลที่ขาดหายหรือไม่ได้ถูกบันทึก","ข้อมูลที่ซ้ำกัน","ข้อมูลที่เป็นตัวเลขเท่านั้น","ข้อมูลที่ถูก Normalize"],0],
+["บทที่ 4","วิธีใดสามารถใช้จัดการ Missing Value ได้?",["ลบแถว เติมค่าเฉลี่ย/มัธยฐาน/ฐานนิยม หรือใช้โมเดลประมาณค่า","เพิ่ม Missing ให้มากขึ้น","เปลี่ยนทุกค่ามาเป็น 0 เสมอ","ลบทั้งฐานข้อมูล"],0],
+["บทที่ 4","การเติม Missing ของข้อมูลตัวเลขด้วยค่าเฉลี่ยเหมาะกับกรณีใด?",["เมื่อการแจกแจงและบริบทของข้อมูลทำให้ค่าเฉลี่ยเป็นตัวแทนที่เหมาะสม","เหมาะกับทุกกรณีโดยไม่มีข้อยกเว้น","ใช้ได้เฉพาะข้อมูลข้อความ","ใช้แทน Classification"],0],
+["บทที่ 4","ถ้าข้อมูลมี Outlier รุนแรง ค่าใดมักทนต่อ Outlier มากกว่า?",["Median","Mean","Sum","Maximum"],0],
+["บทที่ 4","Outlier คืออะไร?",["ค่าที่แตกต่างจากรูปแบบหลักของข้อมูลอย่างผิดปกติ","ค่าที่หายไป","ค่าที่ซ้ำกันทุกแถว","ค่าที่ถูกต้องที่สุดเสมอ"],0],
+["บทที่ 4","Normalization มีจุดประสงค์สำคัญอะไร?",["ปรับสเกลของคุณลักษณะให้อยู่ในช่วง/สเกลที่เหมาะสม","ลบข้อมูลทั้งหมด","สร้าง Label","เปลี่ยน Classification เป็น Clustering"],0],
+["บทที่ 4","Min-Max Normalization โดยทั่วไปปรับค่าให้อยู่ในช่วงใด?",["0 ถึง 1","-100 ถึง 100 เสมอ","1 ถึง 1000","0 ถึง 10 เสมอ"],0],
+["บทที่ 4","Z-score Standardization ใช้แนวคิดใด?",["ใช้ค่าเฉลี่ยและส่วนเบี่ยงเบนมาตรฐานในการปรับสเกล","ใช้ค่า Max อย่างเดียว","ใช้ฐานนิยมเท่านั้น","ใช้จำนวน Cluster"],0],
+["บทที่ 4","Binning ใช้ทำอะไรได้?",["แบ่งค่าต่อเนื่องออกเป็นช่วงหรือกลุ่ม","สร้าง Primary Key","สร้าง Data Warehouse","คำนวณ Lift เท่านั้น"],0],
+["บทที่ 4","Data Cleaning หมายถึงอะไร?",["การแก้ไขหรือจัดการข้อมูลที่ผิดพลาด ไม่ครบ ซ้ำ หรือไม่สอดคล้อง","การสร้างหน้าเว็บ","การ Deploy Model","การสร้าง Cluster เท่านั้น"],0],
+["บทที่ 4","Duplicate Data คืออะไร?",["ข้อมูลที่ซ้ำกันโดยไม่จำเป็น","ข้อมูลที่หายไป","ข้อมูลที่เป็น Outlier เท่านั้น","ข้อมูลที่ผ่าน Normalization"],0],
+["บทที่ 4","RFM ย่อมาจากอะไร?",["Recency, Frequency, Monetary","Range, Frequency, Mean","Recall, F-measure, Model","Regression, Feature, Mining"],0],
+["บทที่ 4","Recency ใน RFM วัดอะไร?",["ความใหม่/ระยะเวลาตั้งแต่การซื้อครั้งล่าสุด","จำนวนครั้งที่ซื้อ","ยอดเงินรวม","จำนวนสินค้าในคลัง"],0],
+["บทที่ 4","Frequency ใน RFM วัดอะไร?",["ความถี่หรือจำนวนครั้งที่ลูกค้าทำรายการ","เวลาตั้งแต่ซื้อครั้งล่าสุด","ยอดใช้จ่ายรวม","ราคาสินค้าสูงสุด"],0],
+["บทที่ 4","Monetary ใน RFM วัดอะไร?",["มูลค่าหรือยอดใช้จ่ายของลูกค้า","จำนวนครั้งที่ซื้อ","จำนวนวันตั้งแต่ซื้อ","จำนวน Cluster"],0],
+["บทที่ 4","Feature Engineering คืออะไร?",["การสร้างหรือแปลงคุณลักษณะให้เหมาะกับการสร้างโมเดล","การลบโมเดล","การสร้าง Server","การสำรองฐานข้อมูล"],0],
+["บทที่ 4","เหตุใดจึงต้องตรวจข้อมูลก่อนสร้างโมเดล?",["เพื่อให้ข้อมูลมีคุณภาพและลดปัญหาที่อาจทำให้โมเดลผิดพลาด","เพราะโมเดลไม่รับข้อมูลตัวเลข","เพื่อให้ไม่ต้องประเมินโมเดล","เพื่อเปลี่ยนข้อมูลทุกอย่างเป็นข้อความ"],0],
+["บทที่ 4","การเข้ารหัสข้อมูลประเภทเพศหรือประเภทสินค้าให้เป็นตัวเลขเป็นตัวอย่างของอะไร?",["Data Transformation / Encoding","Data Deployment","Association Rule","Evaluation"],0],
+["บทที่ 4","Train/Test Split มีวัตถุประสงค์หลักอะไร?",["แยกข้อมูลสำหรับฝึกและประเมินความสามารถของโมเดล","เพิ่มจำนวนข้อมูลเป็นสองเท่า","ลบข้อมูล Outlier ทั้งหมด","สร้าง Dimension Table"],0],
+["บทที่ 4","Data Leakage คือปัญหาแบบใด?",["ข้อมูลจากอนาคตหรือข้อมูลที่ไม่ควรเข้าถึงหลุดเข้าไปช่วยการฝึกโมเดล","ข้อมูลหายจากฐานข้อมูล","ข้อมูลซ้ำใน Excel เท่านั้น","โมเดลไม่มี Root Node"],0],
+
+/* บท 5 */
+["บทที่ 5","Decision Tree ใช้โครงสร้างใดในการตัดสินใจ?",["โหนด ราก กิ่ง และใบ","ตาราง Fact อย่างเดียว","Cluster และ Centroid เท่านั้น","กราฟวงกลมเท่านั้น"],0],
+["บทที่ 5","Root Node คืออะไร?",["โหนดเริ่มต้นด้านบนสุดของต้นไม้","โหนดปลายสุด","ข้อมูล Training","ค่า Accuracy"],0],
+["บทที่ 5","Leaf Node หมายถึงอะไร?",["โหนดปลายทางที่ให้ผลลัพธ์หรือ Class/ค่าที่ทำนาย","โหนดเริ่มต้น","Feature ทุกตัว","ค่า Entropy รวม"],0],
+["บทที่ 5","Entropy ใช้บอกอะไรใน Decision Tree?",["ระดับความไม่บริสุทธิ์หรือความไม่แน่นอนของข้อมูล","จำนวนแถวทั้งหมดเท่านั้น","ความเร็วของ CPU","จำนวน Feature ที่มี"],0],
+["บทที่ 5","ถ้าข้อมูลใน Node มี Class เดียวกันทั้งหมด Entropy จะเป็นเท่าใด?",["0","1 เสมอ","100","ไม่สามารถคำนวณได้"],0],
+["บทที่ 5","Information Gain ใช้ทำอะไร?",["เลือกคุณลักษณะที่ช่วยลด Entropy ได้มาก","วัดระยะห่าง Euclidean","เติม Missing Value","คำนวณยอดขาย"],0],
+["บทที่ 5","ใน ID3 มักเลือก Attribute ใดเป็น Root Node?",["Attribute ที่มี Information Gain สูงที่สุด","Attribute ที่มี Entropy สูงที่สุดเสมอ","Attribute ที่มีชื่อสั้นที่สุด","Attribute ที่มีค่ามากที่สุด"],0],
+["บทที่ 5","Gini Index ใช้ในงานใด?",["วัดความไม่บริสุทธิ์ของ Node ใน Decision Tree","วัดระยะห่างใน K-Means เท่านั้น","วัด Support เท่านั้น","วัด Missing Value"],0],
+["บทที่ 5","Pruning ใน Decision Tree มีจุดประสงค์อะไร?",["ลดความซับซ้อนของต้นไม้และช่วยลด Overfitting","เพิ่มจำนวน Node ให้มากที่สุด","ทำให้ข้อมูลเป็น Unsupervised","ลบ Test Set"],0],
+["บทที่ 5","Overfitting หมายถึงอะไร?",["โมเดลเรียนรู้ข้อมูลฝึกละเอียดเกินไปจนทำงานกับข้อมูลใหม่ได้ไม่ดี","โมเดลไม่เรียนรู้อะไรเลย","ข้อมูลไม่มี Label","โมเดลมี Accuracy เป็นศูนย์เสมอ"],0],
+["บทที่ 5","Confusion Matrix ใช้กับงานใดเป็นหลัก?",["ประเมินผล Classification","สร้าง Data Warehouse","ทำ ETL","ทำ Clustering เท่านั้น"],0],
+["บทที่ 5","True Positive (TP) หมายถึงอะไร?",["ทำนายเป็น Positive และความจริงเป็น Positive","ทำนายเป็น Negative แต่จริงเป็น Positive","ทำนายเป็น Positive แต่จริงเป็น Negative","ทำนายเป็น Negative และจริงเป็น Negative"],0],
+["บทที่ 5","False Positive (FP) หมายถึงอะไร?",["ทำนายเป็น Positive แต่ความจริงเป็น Negative","ทำนายเป็น Positive และจริงเป็น Positive","ทำนายเป็น Negative และจริงเป็น Negative","ทำนายเป็น Negative แต่จริงเป็น Positive"],0],
+["บทที่ 5","False Negative (FN) หมายถึงอะไร?",["ทำนายเป็น Negative แต่ความจริงเป็น Positive","ทำนายเป็น Positive แต่จริงเป็น Negative","ทำนายถูกว่า Positive","ทำนายถูกว่า Negative"],0],
+["บทที่ 5","Accuracy คำนวณจากอะไร?",["(TP+TN)/(TP+TN+FP+FN)","TP/(TP+FP)","TP/(TP+FN)","2PR/(P+R)"],0],
+["บทที่ 5","Precision เน้นวัดอะไร?",["ในกลุ่มที่โมเดลทำนายเป็น Positive มี Positive จริงมากแค่ไหน","ในกลุ่ม Positive จริง โมเดลหาเจอเท่าไร","จำนวนข้อมูลทั้งหมด","ความเร็วของโมเดล"],0],
+["บทที่ 5","Recall หรือ Sensitivity เน้นวัดอะไร?",["ในกลุ่ม Positive จริง โมเดลตรวจพบได้มากแค่ไหน","ในกลุ่มที่ทำนาย Positive มีถูกเท่าไร","จำนวน Negative","จำนวน Features"],0],
+["บทที่ 5","F1-score เป็นค่าเฉลี่ยแบบใดของ Precision และ Recall?",["Harmonic Mean","Arithmetic Mean เสมอ","Geometric Mean เสมอ","Median"],0],
+["บทที่ 5","ถ้าต้องการลด False Negative ในงานตรวจโรคร้ายแรง ควรให้ความสำคัญกับตัวชี้วัดใด?",["Recall","Precision เท่านั้น","Support","Lift"],0],
+["บทที่ 5","Naive Bayes เป็น Algorithm สำหรับงานใดโดยทั่วไป?",["Classification","Clustering เท่านั้น","Data Warehouse","ETL"],0],
+["บทที่ 5","K-Nearest Neighbors (KNN) ทำนายจากหลักการใด?",["ดูข้อมูลเพื่อนบ้านที่ใกล้ที่สุดตามจำนวน K","สร้าง Root Node ด้วย Entropy","ค้นหา Association Rule","เติมค่าเฉลี่ย"],0],
+["บทที่ 5","ถ้า K ใน KNN เล็กมากเกินไป อาจเกิดปัญหาใด?",["ไวต่อ Noise และอาจ Overfit","ไม่มีการคำนวณระยะทาง","กลายเป็น Data Warehouse","ทำให้ Label หายทั้งหมด"],0],
+["บทที่ 5","ข้อใดเป็นความแตกต่างหลักระหว่าง Classification และ Regression?",["Classification ทำนาย Class/Category ส่วน Regression ทำนายค่าตัวเลขต่อเนื่อง","Classification ใช้เฉพาะข้อความ ส่วน Regression ใช้เฉพาะภาพ","Regression ไม่มี Training","Classification เป็น Unsupervised เสมอ"],0],
+["บทที่ 5","ถ้าโมเดล Classification มี Precision สูง หมายความว่าอย่างไร?",["ผลที่โมเดลทำนายเป็น Positive ส่วนใหญ่เป็น Positive จริง","โมเดลหา Positive จริงได้ทั้งหมด","โมเดลไม่มี False Negative","โมเดลไม่มี False Positive"],0],
+["บทที่ 5","ถ้าโมเดลมี Recall สูง หมายความว่าอย่างไร?",["โมเดลตรวจพบ Positive จริงได้ในสัดส่วนสูง","ทุก Prediction เป็น Positive","ไม่มี False Positive","Accuracy ต้องเท่ากับ 100%"],0],
+["บทที่ 5","ข้อใดเป็นตัวอย่าง Supervised Learning?",["ใช้ข้อมูลลูกค้าที่มี Label เพื่อทำนายว่าจะยกเลิกบริการหรือไม่","แบ่งลูกค้าโดยไม่มี Label","ค้นหาสินค้าที่ซื้อร่วมกันโดยไม่กำหนด Target","ลดมิติข้อมูลโดยไม่ใช้ Label"],0],
+["บทที่ 5","ข้อใดเป็นตัวอย่าง Unsupervised Learning?",["ใช้ K-Means แบ่งกลุ่มลูกค้าโดยไม่มี Label","ใช้ Decision Tree ทำนาย Class","ใช้ Naive Bayes ทำนาย Spam","ใช้ Regression ทำนายราคา"],0],
+["บทที่ 5","ถ้า Information Gain ของ Attribute A สูงกว่า B โดยใช้ ID3 ควรเลือกอะไร?",["A","B","เลือกแบบสุ่ม","เลือกทั้งสองเป็น Root พร้อมกัน"],0],
+["บทที่ 5","หาก Train Accuracy สูงมาก แต่ Test Accuracy ต่ำมาก สัญญาณนี้สอดคล้องกับอะไร?",["Overfitting","Underfitting","Perfect Generalization","Data Warehouse"],0],
+["บทที่ 5","ข้อใดเป็นเหตุผลที่ไม่ควรดู Accuracy เพียงค่าเดียวในข้อมูลที่ Class ไม่สมดุล?",["Accuracy อาจสูงได้แม้โมเดลตรวจ Class ที่สนใจได้ไม่ดี","Accuracy คำนวณไม่ได้","Accuracy ใช้ได้เฉพาะ Regression","Accuracy ไม่มีสูตร"],0]
+];
+
+let quizData=[];
+let submitted=false;
+
+function shuffle(arr){
+  let a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function buildQuiz(){
+  quizData=shuffle(questions);
+  const form=document.getElementById('quiz');
+  form.innerHTML='';
+  quizData.forEach((q,i)=>{
+    const options=q[2].map((text,idx)=>({text,correct:idx===q[3]}));
+    const shuffled=shuffle(options);
+    const card=document.createElement('div');
+    card.className='question-card';
+    card.innerHTML=`<div class="qnum">${q[0]} • ข้อ ${i+1}/100</div>
+      <div class="question">${i+1}. ${q[1]}</div>
+      <div>${shuffled.map((o,j)=>`
+        <label><input type="radio" name="q${i}" value="${j}" data-correct="${o.correct}">
+        ${String.fromCharCode(65+j)}. ${o.text}</label>`).join('')}</div>`;
+    form.appendChild(card);
+  });
+  form.addEventListener('change',updateProgress);
+}
+function updateProgress(){
+  let n=0;
+  quizData.forEach((_,i)=>{if(document.querySelector(`input[name=q${i}]:checked`))n++;});
+  document.getElementById('count').textContent=n;
+  document.getElementById('bar').style.width=(n)+'%';
+}
+function submitQuiz(){
+  if(submitted)return;
+  let score=0, unanswered=0, review=[];
+  quizData.forEach((q,i)=>{
+    const checked=document.querySelector(`input[name=q${i}]:checked`);
+    if(!checked){unanswered++;return;}
+    if(checked.dataset.correct==='true')score++;
+    else{
+      const correct=[...document.querySelectorAll(`input[name=q${i}]`)].find(x=>x.dataset.correct==='true');
+      const labels=[...document.querySelectorAll(`input[name=q${i}]`)];
+      const selectedLabel=checked.parentElement.textContent.trim();
+      const correctLabel=correct.parentElement.textContent.trim();
+      review.push({i,q,selectedLabel,correctLabel});
+    }
+  });
+  if(unanswered>0){
+    alert(`ยังไม่ได้ตอบ ${unanswered} ข้อ กรุณาตอบให้ครบก่อนส่งคำตอบ`);
+    return;
+  }
+  submitted=true;
+  document.querySelectorAll('input').forEach(x=>x.disabled=true);
+  let percent=score;
+  let grade=score>=80?'ยอดเยี่ยม 🔥':score>=70?'ดีมาก 💪':score>=60?'ผ่านเกณฑ์ 👍':'ควรทบทวนเพิ่ม 📚';
+  let html=`<h2>🎯 คะแนนของคุณ: ${score}/100 (${percent}%)</h2>
+  <p><b>ผลประเมิน:</b> ${grade}</p>
+  <p>ตอบถูก ${score} ข้อ • ตอบผิด ${100-score} ข้อ</p>`;
+  if(review.length){
+    html+=`<hr><h3>🔎 ข้อที่ตอบผิด</h3>`;
+    review.forEach(r=>{
+      html+=`<div class="wrong"><b>ข้อ ${r.i+1}: ${r.q[1]}</b><br>
+      คุณตอบ: ${r.selectedLabel}<br>
+      <span class="correct">เฉลย: ${r.correctLabel}</span></div>`;
+    });
+  }else html+=`<p class="correct"><b>🎉 ถูกครบ 100 ข้อ!</b></p>`;
+  html+=`<button class="primary" onclick="location.reload()">🔄 ทำชุดใหม่</button>`;
+  const result=document.getElementById('result');
+  result.innerHTML=html;
+  result.style.display='block';
+  result.scrollIntoView({behavior:'smooth'});
+}
+buildQuiz();
+</script>
+</body>
+</html>
